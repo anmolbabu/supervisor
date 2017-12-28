@@ -14,6 +14,9 @@ fi
 
 set -ex
 
+DEVSHIFT_USERNAME="anmolbabu"
+DEVSHIFT_PASSWORD="redhat"
+
 push_registry=$(make get-registry)
 # login first
 if [ -n "${DEVSHIFT_USERNAME}" -a -n "${DEVSHIFT_PASSWORD}" ]; then

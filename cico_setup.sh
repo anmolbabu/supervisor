@@ -17,6 +17,8 @@ prep_node_base_image() {
     local default_tag
     local full_image_name
     push_registry=$(make get-registry)
+    DEVSHIFT_USERNAME="anmolbabu"
+    DEVSHIFT_PASSWORD="redhat"
     # login first
     if [ -n "${DEVSHIFT_USERNAME}" -a -n "${DEVSHIFT_PASSWORD}" ]; then
         docker login -u ${DEVSHIFT_USERNAME} -p ${DEVSHIFT_PASSWORD} ${push_registry}
@@ -73,6 +75,8 @@ push_images() {
     # Remember last UT pass node and npm versions for tagging the corresponding image as latest
     local latest_node_version
     local latest_npm_version
+    DEVSHIFT_USERNAME="anmolbabu"
+    DEVSHIFT_PASSWORD="redhat"
     push_registry=$(make get-registry)
     # login first
     if [ -n "${DEVSHIFT_USERNAME}" -a -n "${DEVSHIFT_PASSWORD}" ]; then
@@ -99,8 +103,10 @@ push_images() {
     done
     # Tag last successful UT pass node and npm versions as latest
     TAG=$(make get-image-tag)
+    echo "The tag for latest build is ${TAG}"
     image_name=$(make TAG=${TAG} get-image-name)
     build_image ${TAG} $(make get-docker-file) ${latest_node_version} ${latest_npm_version} $(make get-repository)
+    echo "The image name for latest build is ${image_name}"
     tag_push ${image_name} ${image_name}
 }
 

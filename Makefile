@@ -1,5 +1,5 @@
-REGISTRY?=registry.devshift.net
-ORGANIZATION?=fabric8-hdd
+REGISTRY?=registry.hub.docker.com
+ORGANIZATION?=anmolbabu
 REPOSITORY?=openshift-hdd-supervisor
 NODEJS_REPO?=nodejs
 DOCKERFILE?=Dockerfile
